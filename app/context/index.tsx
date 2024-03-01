@@ -7,20 +7,22 @@ export const UserContext = React.createContext({} as IProductsContext);
 
 export interface IProduct {
   category: string;
-  description: string;
+  description?: string;
   image: string;
+  id: number;
   price: number;
-  rating: {
+  rating?: {
     rate: number;
     count: number;
   };
   title: string;
+  quantityInCart?: number;
 }
 
 export interface IProductsContext {
   cartItems: IProduct[];
   getAllProducts(): void;
-  handleFavorites(favoriteItem: any): void;
+  handleCartItems(favoriteItem: any, isAdding?: boolean): void;
   loading: boolean;
 }
 
@@ -75,20 +77,71 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
           throw new Error("Something wrong. Please try later.");
         }
         const data = await response.json();
-        console.log("data", data);
         return data;
       } catch (error: any) {
         triggerToast(error.message, true);
       }
     },
-    handleFavorites: async (favoriteItem: any) => {
+    handleCartItems: async (favoriteItem: any, isAdding?: boolean) => {
       try {
-
-   
-
-        triggerToast("Product added to your cart!");
+        if (isAdding) {
+          const existingItem = cartItems.find(item => item.id === favoriteItem.id);
+          if (existingItem) {
+            const updatedCartItems = cartItems.map(item => {
+              if (item.id === favoriteItem.id) {
+                return {
+                  ...item,
+                  quantityInCart: item.quantityInCart ? item.quantityInCart + 1 : 1
+                };
+              }
+              return item;
+            });
+            setCartItems(updatedCartItems);
+            await AsyncStorage.setItem(
+              localStorageKeys.cartWord,
+              JSON.stringify(updatedCartItems)
+            );
+          } else {
+            const newCartItem = {
+              ...favoriteItem,
+              quantityInCart: 1
+            };
+            const newCartItems = [...cartItems, newCartItem];
+            setCartItems(newCartItems);
+            await AsyncStorage.setItem(
+              localStorageKeys.cartWord,
+              JSON.stringify(newCartItems)
+            );
+          }
+        } else {
+          const existingItem = cartItems.find(item => item.id === favoriteItem.id);
+          if (existingItem) {
+            if (existingItem.quantityInCart && existingItem.quantityInCart > 1) {
+              const updatedCartItems = cartItems.map(item => {
+                if (item.id === favoriteItem.id) {
+                  return {
+                    ...item,
+                    quantityInCart: item.quantityInCart - 1
+                  };
+                }
+                return item;
+              });
+              setCartItems(updatedCartItems);
+              await AsyncStorage.setItem(
+                localStorageKeys.cartWord,
+                JSON.stringify(updatedCartItems)
+              );
+            } else {
+              const newCartItems = cartItems.filter(item => item.id !== favoriteItem.id);
+              setCartItems(newCartItems);
+              await AsyncStorage.setItem(
+                localStorageKeys.cartWord,
+                JSON.stringify(newCartItems)
+              );
+            }
+          }
+        }
       } catch (error) {
-        console.log("error saving word", error as string);
         throw new Error("An error occurred while saving word");
       }
     },
