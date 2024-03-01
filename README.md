@@ -2,7 +2,7 @@
 
 ## Intro
 Sample eCommerce app developed with React Native, featuring data retrieval from the Fake Store API and seamless shopping cart management.
-<img src="![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/25fe84b0-aae8-43b4-8705-005f6acd8bb8)" width="20%" />
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 58 Large](https://github.com/massuiabigdog/shopping-cart-challenge-react-native/assets/16282589/1ce382b1-8cab-4aec-a70f-eea2598fc2ff)
 
 #### Technologies (Mobile):
 - React Native
@@ -31,10 +31,11 @@ https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/
 ##### Screens
 <img src="![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/25fe84b0-aae8-43b4-8705-005f6acd8bb8)" width="20%" />
 
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 35](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/06306642-a015-4c5c-b3aa-0e111c222438)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/33c743e1-836d-42bd-876d-d35e6af5277e)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 58](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/c8ef09d3-6d00-4a98-9f48-9737a2b4dc4f)
 
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 46 Large](https://github.com/massuiabigdog/shopping-cart-challenge-react-native/assets/16282589/725825e6-5e68-4bd0-a9c6-f28382e89d33)
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 35 Large](https://github.com/massuiabigdog/shopping-cart-challenge-react-native/assets/16282589/48f57efd-5cc3-4b9e-9435-351b0ca1dad0)
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46 Large](https://github.com/massuiabigdog/shopping-cart-challenge-react-native/assets/16282589/9c0438bf-1276-44a3-a595-cfb8d91b4131)
 
 ### Let's work together! 
 
