@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { FlatList, TouchableOpacity, ScrollView } from "react-native";
+import React, { useState, useContext, ReactNode } from "react";
+import { FlatList, TouchableOpacity, ScrollView, Image } from "react-native";
 import { Modal, Box, Button, Text, Badge, VStack, HStack, Divider, Avatar } from "native-base";
 
 import { IProduct, UserContext } from "../context";
@@ -10,6 +10,14 @@ const ProductList = (props: {
 }) => {
   const { handleFavorites } = useContext(UserContext);
   const [modalProduct, setModalProduct] = useState(false as any);
+
+  const actionsButtons = <>
+    <Button variant='outline' colorScheme="red" onPress={() => console.log('Remove from cart')}>
+      Remove from Cart
+    </Button>
+    <Button colorScheme='purple' fontWeight='bold' onPress={() => console.log('Add to cart')}>
+      <Text fontWeight='bold' color='white' >Add to Cart</Text>
+    </Button></>
 
   return (
     <>
@@ -23,7 +31,7 @@ const ProductList = (props: {
       <FlatList
         data={props.providedList}
         renderItem={({ item }) => (
-          <ProductCard selectProduct={(product: IProduct) => setModalProduct(product)} product={item} />
+          <ProductCard selectProduct={(product: IProduct) => setModalProduct(product)} product={item}>{actionsButtons}</ProductCard>
         )}
         keyExtractor={(item, index) => `${item.title}_${index}`}
         onEndReachedThreshold={0.1}
@@ -45,14 +53,7 @@ const ProductList = (props: {
           </Modal.Body>
           <Modal.Footer>
             <Button.Group space={2}>
-              <Button variant="ghost" colorScheme="blueGray" onPress={() => {
-              }}>
-                Cancel
-              </Button>
-              <Button onPress={() => {
-              }}>
-                Save
-              </Button>
+              {actionsButtons}
             </Button.Group>
           </Modal.Footer>
         </Modal.Content>
@@ -64,18 +65,23 @@ const ProductList = (props: {
 export default ProductList;
 
 
-const ProductCard = ({ product, selectProduct }: { product: IProduct, selectProduct?: (item: IProduct) => void }) => {
+const ProductCard = ({ product, selectProduct, children }: { product: IProduct, children?: ReactNode, selectProduct?: (item: IProduct) => void }) => {
   const { title, image, price, category, rating, description } = product;
 
-  const isFromModal = !!selectProduct;
-
+  const isFromModal = !!!selectProduct;
   const mainContent = <>
+    {isFromModal && <Box m='auto'>
+      <Image source={{ uri: image }} height={200} width={200} style={{ margin: 'auto', justifyContent: 'space-around' }} />
+    </Box>
+    }
     <HStack justifyContent="space-between">
-      <Avatar size='2xl' bg="green.500" source={{
-        uri: image
-      }} />
+      {
+        !isFromModal && <Avatar size='2xl' bg="green.500" source={{
+          uri: image
+        }} />
+      }
       <Box ml="2" style={{ flex: 1, }}>
-        <Text color='gray.800' fontSize='md'>{title}</Text>
+        <Text color='gray.800' fontSize={isFromModal ? 'lg' : 'md'} style={isFromModal ? {textAlign: 'center', fontWeight: 'bold', marginTop: 10} : {}}>{title}</Text>
         <HStack m='auto'>
           <Text mt={4} color="gray.500">$</Text>
           <Text color="red.400" fontWeight='bold' fontSize='3xl'>{price?.toFixed(2)}</Text>
@@ -90,22 +96,20 @@ const ProductCard = ({ product, selectProduct }: { product: IProduct, selectProd
         <HStack mt='1' >{createRateStars(rating?.rate)}</HStack>
       </Box>
     </HStack>
-    <Text fontSize='xs' mt='2'>{description}</Text>
-    <Divider mt='3' /></>
+    <Text fontSize={isFromModal ? 'md' : 'xs'} mt='2'>{description}</Text>
+  </>
+
+  if (isFromModal) return mainContent;
   return (
     <>
       <Box borderX="1px" bg='white' m='4' mt='2' mb='2' shadow='2' borderRadius="lg">
         <VStack space={2} p="5">
-          <TouchableOpacity onPress={() => selectProduct(product)}>
+          <TouchableOpacity onPress={() => (selectProduct as unknown as (item: IProduct) => void)(product)}>
             {mainContent}
+            <Divider mt='3' />
           </TouchableOpacity>
           <HStack space={2} m='auto' mt="5" >
-            <Button variant='outline' colorScheme="red" onPress={() => console.log('Remove from cart')}>
-              Remove from Cart
-            </Button>
-            <Button colorScheme='purple' fontWeight='bold' onPress={() => console.log('Add to cart')}>
-              <Text fontWeight='bold' color='white' >Add to Cart</Text>
-            </Button>
+            {children}
           </HStack>
         </VStack>
       </Box>
