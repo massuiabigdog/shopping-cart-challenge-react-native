@@ -2,6 +2,7 @@
 
 ## Intro
 Sample eCommerce app developed with React Native, featuring data retrieval from the Fake Store API and seamless shopping cart management.
+<img src="![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/25fe84b0-aae8-43b4-8705-005f6acd8bb8)" width="20%" />
 
 #### Technologies (Mobile):
 - React Native
@@ -28,7 +29,8 @@ user has selected and their quantity.
 https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/cfd50a73-1b53-4d03-afba-d6c716362efc
 
 ##### Screens
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/25fe84b0-aae8-43b4-8705-005f6acd8bb8)
+<img src="![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 01 49 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/25fe84b0-aae8-43b4-8705-005f6acd8bb8)" width="20%" />
+
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 35](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/06306642-a015-4c5c-b3aa-0e111c222438)
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 46](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/33c743e1-836d-42bd-876d-d35e6af5277e)
 ![Simulator Screenshot - iPhone 15 Pro Max - 2024-03-01 at 11 48 58](https://github.com/massuiabigdog/Coodesh_react-native_challenge/assets/16282589/c8ef09d3-6d00-4a98-9f48-9737a2b4dc4f)
